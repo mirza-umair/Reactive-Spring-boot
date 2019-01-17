@@ -36,8 +36,8 @@ public class PersonService {
 
 	}
 
-	public Flux<List<Person>> all() {
-		return Flux.just(persons);
+	public Flux<Person> all() {
+		return Flux.fromIterable(persons);
 	}
 
 	public Mono<Person> findOne(long id) {

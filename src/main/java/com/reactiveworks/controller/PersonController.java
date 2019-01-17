@@ -1,11 +1,6 @@
 package com.reactiveworks.controller;
 
-import java.util.List;
-
-import org.reactivestreams.Publisher;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +19,6 @@ import reactor.core.publisher.Mono;
 @RequestMapping(value = "/persons", produces = MediaType.APPLICATION_JSON_VALUE)
 class PersonController {
 
-	private final MediaType mediaType = MediaType.APPLICATION_JSON_UTF8;
 	private final PersonService personService;
 
 	PersonController(PersonService personService) {
@@ -32,7 +26,7 @@ class PersonController {
 	}
 
 	@GetMapping
-	public Flux<List<Person>> getAll() {
+	public Flux<Person> getAll() {
 		return personService.all();
 	}
 

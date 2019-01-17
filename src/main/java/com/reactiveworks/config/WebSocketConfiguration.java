@@ -42,11 +42,8 @@ class WebSocketConfiguration {
 
 	@Bean
 	WebSocketHandler webSocketHandler(ObjectMapper objectMapper, PersonEventPublisher eventPublisher) {
-
 		Flux<PersonEvent> publish = Flux.create(eventPublisher).share();
-
 		return session -> {
-
 			Flux<WebSocketMessage> messageFlux = publish.map(evt -> {
 				try {
 					return objectMapper.writeValueAsString(evt.getSource());
